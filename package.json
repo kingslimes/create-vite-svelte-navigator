@@ -1,0 +1,48 @@
+{
+  "name": "create-vite-svelte-navigator",
+  "description": "create vite template svelte + vite-svelte-navigator",
+  "version": "1.0.0",
+  "type": "module",
+  "author": {
+    "name": "kingslimes",
+    "email": "natontmp123@gmail.com",
+    "url": "https://github.com/kingslimes"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kingslimes/create-vite-svelte-navigator.git"
+  },
+  "homepage": "https://github.com/kingslimes/create-vite-svelte-navigator#readme",
+  "bin": {
+    "create-vite-svelte-navigator": "./dist/index.js"
+  },
+  "bugs": {
+    "url": "https://github.com/kingslimes/vite-svelte-navigator/issues"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "keywords": [
+    "app",
+    "spa",
+    "create",
+    "svelte",
+    "router",
+    "routing",
+    "typescript",
+    "navigation"
+  ],
+  "private": false,
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.11.0"
+  }
+}
