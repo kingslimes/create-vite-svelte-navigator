@@ -1,0 +1,32 @@
+
+name: NPM_PUBLISH
+
+permissions:
+  id-token: write
+
+on:
+  release:
+    types: [published]
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - run: bun install
+      - run: bun build.ts
+      - run: bun remove @clack/prompts typescript @types/bun
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          registry-url: https://registry.npmjs.org/
+      - run: npm publish --provenance --access=public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
