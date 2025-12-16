@@ -3,7 +3,7 @@
 Scaffold a **Vite + Svelte** project with **vite-svelte-navigator** preconfigured.  
 Fast setup, clean routing, and a friendly interactive CLI ✨
 
----
+
 
 ## ✨ Features
 
@@ -13,7 +13,7 @@ Fast setup, clean routing, and a friendly interactive CLI ✨
 - 🧑‍💻 Interactive CLI (powered by `@clack/prompts`)
 - 📦 Auto-detects package manager (npm / pnpm / yarn / bun)
 
----
+
 
 ## 🚀 Getting Started
 
@@ -41,7 +41,7 @@ or
 bun create vite-svelte-navigator my-app
 ```
 
----
+
 
 ## 🧑‍💻 Interactive Setup
 
@@ -51,7 +51,7 @@ During setup, the CLI will ask you:
 - Language (TypeScript or JavaScript)
 - Confirm before deleting files (if the directory is not empty)
 
----
+
 
 ## 📁 Project Structure
 
@@ -69,7 +69,7 @@ my-app/
 └─ vite.config.ts
 ```
 
----
+
 
 ## 🧭 Routing Example
 
@@ -88,7 +88,7 @@ Routing is already set up using **vite-svelte-navigator**.
 <RouterProvider {router} />
 ```
 
----
+
 
 ## 📦 Installed Dependencies
 
@@ -98,7 +98,7 @@ The CLI automatically installs:
 - `svelte`
 - `vite-svelte-navigator`
 
----
+
 
 ## ⚙️ Available Flags
 
@@ -119,20 +119,20 @@ or `bun`
 bun create vite-svelte-navigator my-app --ts
 ```
 
----
+
 
 ## ⚠️ Notes
 
 - If the target directory is **not empty**, the CLI will ask for confirmation before deleting files.
 - Default package manager is auto-detected from your environment.
 
----
+
 
 ## 📄 License
 
 MIT License
 
----
+
 
 ## ❤️ Credits
 
