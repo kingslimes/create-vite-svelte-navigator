@@ -20,7 +20,7 @@ Fast setup, clean routing, and a friendly interactive CLI ✨
 You can run the CLI using **npx**, **pnpm**, **yarn**, or **bun**.
 
 ```bash
-npx create-vite-svelte-navigator my-app
+npm create vite-svelte-navigator my-app
 ```
 
 or
@@ -38,7 +38,7 @@ yarn create vite-svelte-navigator my-app
 or
 
 ```bash
-bunx create-vite-svelte-navigator my-app
+bun create vite-svelte-navigator my-app
 ```
 
 ---
