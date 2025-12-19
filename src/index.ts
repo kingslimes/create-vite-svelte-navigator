@@ -1,8 +1,8 @@
-import { text, intro, outro, select, spinner, cancel, isCancel, confirm } from '@clack/prompts';
-import { rmSync, globSync, mkdirSync, unlinkSync, readFileSync, writeFileSync } from 'fs';
-import { exec } from 'child_process';
 import { promisify } from 'util';
-import { resolve } from 'path';
+import { exec } from 'child_process';
+import { resolve, join } from 'path';
+import { text, intro, outro, select, spinner, cancel, isCancel, confirm } from '@clack/prompts';
+import { rmSync, mkdirSync, unlinkSync, readdirSync, readFileSync, writeFileSync, existsSync, statSync } from 'fs';
 
 const execAsync = promisify( exec );
 
@@ -31,14 +31,30 @@ if ( !PROJECT_NAME ) {
         process.exit(0);
     }
 }
-if ( globSync(`${ PROJECT_NAME }/*`).length !== 0 ) {
+if (
+    existsSync( PROJECT_NAME ) &&
+    statSync( PROJECT_NAME ).isDirectory() &&
+    readdirSync( PROJECT_NAME ).length !== 0
+) {
     const isClean = await confirm({ message: `Directory "${ PROJECT_NAME }" is not empty. Delete all files and continue?` });
     if ( isCancel( isClean ) || !isClean ) {
         cancel('Operation cancelled');
         process.exit(0);
     }
 }
-rmSync( PROJECT_NAME, { recursive: true, force: true } );
+if ( PROJECT_NAME === "." ) {
+    for ( const item of readdirSync( PROJECT_NAME ) ) {
+        rmSync( join( PROJECT_NAME, item ), {
+            recursive: true,
+            force: true
+        });
+    }
+} else {
+    rmSync( PROJECT_NAME, {
+        recursive: true,
+        force: true
+    });
+}
 
 // Detect and get project language
 type Language = 'ts' | 'js';
@@ -113,7 +129,8 @@ try {
 const promise_ins = spinner();
 promise_ins.start('Installing package...');
 try {
-    const command = `cd ${ PROJECT_NAME } && ${ PROJECT_MANAGER } install && ${ PROJECT_MANAGER } ${ PROJECT_MANAGER === 'npm' ? 'install' : 'add' } vite-svelte-navigator@latest`;
+    const cd = PROJECT_NAME === '.' ? '' : `cd ${ PROJECT_NAME } && `;;
+    const command = `${cd}${ PROJECT_MANAGER } install && ${ PROJECT_MANAGER } ${ PROJECT_MANAGER === 'npm' ? 'install' : 'add' } vite-svelte-navigator@latest`;
     await execAsync( command );
     promise_ins.stop('All packages installed');
 } catch( err ) {
@@ -122,3 +139,8 @@ try {
 }
 
 outro('Have fun coding!');
+
+if ( PROJECT_NAME !== '.' ) {
+    console.log(`  cd ./${ PROJECT_NAME }`);
+}
+console.log(`  ${ PROJECT_MANAGER } run dev\n`);

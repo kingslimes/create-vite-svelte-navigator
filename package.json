@@ -1,7 +1,7 @@
 {
   "name": "create-vite-svelte-navigator",
   "description": "create vite template svelte + vite-svelte-navigator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "author": {
     "name": "kingslimes",
